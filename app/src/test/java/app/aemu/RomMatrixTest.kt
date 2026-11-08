@@ -6,20 +6,7 @@ import org.junit.Test
 
 class RomMatrixTest {
 
-    private fun guessApi(rel: String?): Int = when {
-        rel == null -> 19
-        rel.startsWith("1.0") -> 1; rel.startsWith("1.1") -> 2; rel.startsWith("1.5") -> 3; rel.startsWith("1.6") -> 4
-        rel.startsWith("2.0") -> 5; rel.startsWith("2.1") -> 7; rel.startsWith("2.2") -> 8; rel.startsWith("2.3") -> 10
-        rel.startsWith("3.0") -> 11; rel.startsWith("3.1") -> 12; rel.startsWith("3.2") -> 13
-        rel.startsWith("4.0") -> 15; rel.startsWith("4.1") -> 16; rel.startsWith("4.2") -> 17; rel.startsWith("4.3") -> 18
-        rel.startsWith("4.4") -> 19; rel.startsWith("5.0") -> 21; rel.startsWith("5.1") -> 22
-        rel.startsWith("6") -> 23; rel.startsWith("7.0") -> 24; rel.startsWith("7") -> 25
-        rel.startsWith("8.0") -> 26; rel.startsWith("8.1") -> 27; rel.startsWith("8") -> 26
-        rel.startsWith("9") -> 28; rel.startsWith("10") -> 29; rel.startsWith("11") -> 30
-        rel.startsWith("12") -> 31; rel.startsWith("13") -> 33; rel.startsWith("14") -> 34
-        rel.startsWith("15") -> 35; rel.startsWith("16") -> 36; rel.startsWith("17") -> 37
-        else -> 19
-    }
+    private fun guessApi(rel: String?): Int = app.aemu.importer.Analyzer.guessApi(rel)
 
     private fun detectSkin(p: Map<String, String>, files: Set<String> = emptySet()): String {
         val man = (p["ro.product.manufacturer"] ?: p["ro.product.brand"] ?: "").lowercase()

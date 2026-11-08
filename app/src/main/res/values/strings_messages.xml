@@ -225,4 +225,5 @@
     <string name="update_err_wrong_variant">Update APK does not match this application variant</string>
     <string name="update_err_wrong_package">Downloaded APK has the wrong application package</string>
     <string name="catalog_err_too_many_lines">Catalog exceeds 10000 lines</string>
+    <string name="warn_legacy_experimental">Android %1$s: experimental support (buggy). Boot, graphics, audio and apps may not work with every firmware.</string>
 </resources>

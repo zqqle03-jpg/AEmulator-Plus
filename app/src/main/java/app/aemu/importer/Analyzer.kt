@@ -108,6 +108,7 @@ class Analyzer(private val ctx: Context, private val paths: VmPaths, private val
         if (rcFiles.isEmpty() && dhdBcp == null && !legacy) warnings += ImportWarnings.NO_BOOT_IMG
         // x86-32 runs (libqemu_i386.so); x86-64, MIPS and anything else the translators cannot run still gets the warning
         if (GuestArch.isUnsupported(root, abi)) warnings += ImportWarnings.notArm(abi)
+        if (api == 2 || api in 9..10) warnings += ImportWarnings.legacyExperimental(release)
         if (api >= 21) warnings += ImportWarnings.experimental(release)
 
         val density = all["ro.sf.lcd_density"]?.toIntOrNull() ?: 240
@@ -165,7 +166,8 @@ class Analyzer(private val ctx: Context, private val paths: VmPaths, private val
     }
 
     companion object {
-        const val VERSION = 18   // 18: ICS developer builds (sdk 13, codename IceCreamSandwich) are API 14; 17: guest architecture (GuestArch) detected from the ELF files
+        // Refresh existing profiles for legacy notices and Gingerbread API detection.
+        const val VERSION = 19
 
         /**
          * Form-factor tag from ro.build.characteristics: if the line contains "tv" it is Google TV below API 18 and
@@ -238,7 +240,12 @@ class Analyzer(private val ctx: Context, private val paths: VmPaths, private val
             rel == null -> 19
             rel.startsWith("0.") -> 1   // pre-1.0 builds (0.9)
             rel.startsWith("1.0") -> 1; rel.startsWith("1.1") -> 2; rel.startsWith("1.5") -> 3; rel.startsWith("1.6") -> 4
-            rel.startsWith("2.0") -> 5; rel.startsWith("2.1") -> 7; rel.startsWith("2.2") -> 8; rel.startsWith("2.3") -> 10
+            rel.startsWith("2.0") -> 5; rel.startsWith("2.1") -> 7; rel.startsWith("2.2") -> 8
+            rel.startsWith("2.3") -> {
+                // Android 2.3–2.3.2 is API 9; API 10 starts at 2.3.3.
+                val patch = rel.split('.').getOrNull(2)?.takeWhile { it.isDigit() }?.toIntOrNull() ?: 0
+                if (patch >= 3) 10 else 9
+            }
             rel.startsWith("3.0") -> 11; rel.startsWith("3.1") -> 12; rel.startsWith("3.2") -> 13
             rel.startsWith("4.0") -> 15; rel.startsWith("4.1") -> 16; rel.startsWith("4.2") -> 17; rel.startsWith("4.3") -> 18
             rel.startsWith("4.4") -> 19; rel.startsWith("5.0") -> 21; rel.startsWith("5.1") -> 22

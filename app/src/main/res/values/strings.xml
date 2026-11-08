@@ -31,7 +31,7 @@
     <string name="start">Start</string>
     <string name="rename">Rename</string>
     <string name="help_title">Supported firmware</string>
-    <string name="help_text">• Android 2.2–4.4: 32-bit ARM firmware, runs through QEMU (earlier than 2.2: experimental).\n• Android 5.0–17: arm64 firmware and GSIs, run natively on the phone.\n\nFormats:\n• CWM/TWRP recovery ZIP (MIUI, CyanogenMod, ports, most custom ROMs);\n• Samsung: Odin .tar / .tar.md5 or a ZIP with AP_*.tar.md5;\n• Google factory images (.tgz / .zip);\n• system.img (ext4, sparse, YAFFS2), TWRP backup system.ext4.win;\n• OTA with system.new.dat(.br) + system.transfer.list.\n\nBest if the archive contains boot.img: the service start order is taken from it.</string>
+    <string name="help_text">• Android 2.2–4.4: 32-bit ARM firmware, runs through QEMU (earlier than 2.2: experimental).\n• Android 1.1 and 2.3: experimental and buggy.\n• Android 5.0–17: arm64 firmware and GSIs, run natively on the phone.\n\nFormats:\n• CWM/TWRP recovery ZIP (MIUI, CyanogenMod, ports, most custom ROMs);\n• Samsung: Odin .tar / .tar.md5 or a ZIP with AP_*.tar.md5;\n• Google factory images (.tgz / .zip);\n• system.img (ext4, sparse, YAFFS2), TWRP backup system.ext4.win;\n• OTA with system.new.dat(.br) + system.transfer.list.\n\nBest if the archive contains boot.img: the service start order is taken from it.</string>
     <string name="vs_screen">Guest screen</string>
     <string name="vs_fixed_2x">The Desire HD engine uses a fixed 480×800 screen at 240 dpi.</string>
     <string name="vs_screen_hint">A lower resolution makes the system faster.</string>

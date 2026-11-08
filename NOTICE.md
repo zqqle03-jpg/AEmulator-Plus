@@ -108,3 +108,9 @@ publishing notices or hashes does not remedy missing required source.
 - **2026-10-30 (2)**: a recovery that exits with code 159 (SIGSYS, killed by Android's app sandbox in a system call it does
   not allow) switches `run/recovery.strace` on, so the next try writes `run/recovery.trace`, and its tail goes into
   `run/recovery-last.log` (`GuestVm.kt`).
+
+## 2026-11-08
+
+Modified for AEmulator Plus: distinguish Gingerbread API 9 and 10 when SDK metadata
+is absent, refresh stored profiles, and label Android 1.1/2.3 guests experimental.
+Added regression coverage for legacy version detection and documented limitations.

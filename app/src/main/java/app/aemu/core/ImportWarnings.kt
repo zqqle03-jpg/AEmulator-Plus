@@ -15,6 +15,7 @@ object ImportWarnings {
     const val NO_BOOT_IMG = PREFIX + "no_boot_img"
 
     fun notArm(abi: String) = "${PREFIX}not_arm|$abi"
+    fun legacyExperimental(release: String) = "${PREFIX}legacy_experimental|$release"
     fun experimental(release: String) = "${PREFIX}experimental|$release"
 
     /** Codes of warnings that no longer apply (healthd is not used by newer Android, arm64 is supported). Images
@@ -56,6 +57,7 @@ object ImportWarnings {
         "no_build_prop" -> ctx.getString(R.string.warn_no_build_prop)
         "no_boot_img" -> ctx.getString(R.string.warn_no_boot_img)
         "not_arm" -> ctx.getString(R.string.warn_not_arm, arg)
+        "legacy_experimental" -> ctx.getString(R.string.warn_legacy_experimental, arg)
         "experimental" -> ctx.getString(R.string.warn_experimental, arg)
         else -> null
     }
