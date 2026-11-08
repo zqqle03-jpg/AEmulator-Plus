@@ -31,6 +31,19 @@ AEmulator Plus boots a real Android 1.0–17 system image straight from a firmwa
 3. Press **Start**. The first boot is slower: the system optimises its apps.
 4. Use the ⋮ menu for volume, power button and logs; the ⚙️ button opens app settings and language.
 
+## Experimental legacy guests
+
+Android **1.1 (API 2)** and **2.3–2.3.7 (API 9–10)** use the existing
+32-bit ARM/QEMU compatibility paths. These targets are **experimental and buggy**:
+boot, graphics, audio and application compatibility depend on the firmware.
+Import your own firmware through **Add firmware**; the import result and library
+show an experimental notice. Existing images are re-analyzed on refresh.
+Keep the app navigation bar enabled for these guests. Android 1.1 uses the
+existing legacy framebuffer patch; Gingerbread can use the fallback 2.x engine
+in image settings if the universal engine fails. Neither engine guarantees boot.
+No firmware images are bundled or newly validated by this change. The host app
+still requires Android 8.0 or newer; these version numbers describe guest systems.
+
 ## Requirements
 
 - Android 8.0+ on a 64-bit ARM phone (arm64-v8a)
